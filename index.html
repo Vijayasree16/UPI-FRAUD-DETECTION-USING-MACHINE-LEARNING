@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><h1>FRAUD DETECTION</h1></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: white;
+        }
+        h2 {
+            text-align: center;
+            color: #343a40;
+        }
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label, input, select, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <h2>Fraud Detection</h2>
+    <form action="/predict" method="POST">
+        <label for="type">Transaction Type:</label>
+        <select name="type" id="type">
+            <option value="TRANSFER">TRANSFER</option>
+            <option value="CASH_OUT">CASH_OUT</option>
+        </select>
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" step="0.01" required>
+        <label for="oldbalanceOrg">Old Balance (Origin):</label>
+        <input type="number" name="oldbalanceOrg" step="0.01" required>
+        <label for="newbalanceOrig">New Balance (Origin):</label>
+        <input type="number" name="newbalanceOrig" step="0.01" required>
+        <label for="oldbalanceDest">Old Balance (Destination):</label>
+        <input type="number" name="oldbalanceDest" step="1" required>
+        <label for="newbalanceDest">New Balance (Destination):</label>
+        <input type="number" name="newbalanceDest" step="1" required>
+        <button type="submit">Predict</button>
+    </form>
+    <div class="result">
+        {{ prediction_text }}
+    </div>
+</body>
+</html>
